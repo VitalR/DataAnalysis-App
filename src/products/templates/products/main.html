@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %} Performance {% endblock title %}
+
+{% block content %}
+<h1>Hello world!</h1>
+{{ products | safe}}
+<hr>
+{{ purchase | safe }}
+{% endblock content %}

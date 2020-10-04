@@ -1,0 +1,29 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+#*.txt
+#.gitignore
+__pycache__/
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+#/media
+#/static
+todoapp/
+#settings.py
+.DS_Store
+
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.idea/
+bin/
+lib/
