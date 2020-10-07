@@ -8,19 +8,20 @@
     <!--Custom css-->
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <!--Semantic UI-->
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-
 
     <title>Django Pandas Project - {% block title %}{% endblock title %}</title>
 </head>
 <body>
-    {% include 'navbar.html' %}
-    <div class="ui container">
-        {% block content %}
-        {% endblock content %}
-    </div>
+{% include 'navbar.html' %}
+<div class="ui container">
+    {% block content %}
+    {% endblock content %}
+</div>
 
-    <script src="{% static 'main.js' %}"></script>
+<script type="text/javascript" src="{% static 'main.js' %}"></script>
+<!--type="text/javascript"-->
 </body>
 </html>

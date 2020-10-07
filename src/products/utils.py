@@ -15,11 +15,11 @@ def get_image():
     image_png = buffer.getvalue()
 
     graph = base64.b64encode(image_png)
-    print(graph)
-    print(type(graph))
+    # print(graph)
+    # print(type(graph))
 
     graph = graph.decode('utf-8')
-    print(graph)
+    # print(graph)
 
     # free the memory of the buffer
     buffer.close()
@@ -36,15 +36,15 @@ def get_simple_plot(chart_type, *args, **kwargs):
     data = kwargs.get('data')
 
     if chart_type == 'bar plot':
-        title = 'title'
+        title = 'Total price by day (Bar plot)'
         plt.title(title)
         plt.bar(x, y)
     elif chart_type == 'line plot':
-        title = 'title'
+        title = 'Total price by day (Line plot)'
         plt.title(title)
         plt.plot(x, y)
     else:
-        title = 'title'
+        title = 'Product count sold'
         plt.title(title)
         sns.countplot('name', data=data)
     plt.tight_layout()

@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from .models import Product, Purchase
 from .utils import get_simple_plot
+from .forms import PurchaseForm
 import pandas as pd
 
 
 def chart_select_view(request):
+    df = None
     graph = None
     error_message = None
-    df = None
+    price = None
 
     product_df = pd.DataFrame(Product.objects.all().values())
     purchase_df = pd.DataFrame(Purchase.objects.all().values())
@@ -19,12 +21,13 @@ def chart_select_view(request):
 
     product_df['product_id'] = product_df['id']
 
-    print(purchase_df.shape)
-    print(product_df.shape)
+    # print(purchase_df.shape)
+    # print(product_df.shape)
 
     if purchase_df.shape[0] > 0:  # if there is a data in database
         df = pd.merge(purchase_df, product_df, on='product_id').drop(['id_y', 'date_y'], axis=1).rename(
             {'id_x': 'id', 'date_x': 'date'}, axis=1)
+        price = df['price']
         # print(df['date'][0])
         # print(type(df['date'][0]))
         if request.method == 'POST':
@@ -32,13 +35,13 @@ def chart_select_view(request):
             chart_type = request.POST.get('sales')
             date_from = request.POST['date_from']
             date_to = request.POST['date_to']
-            print(chart_type)
-            print(date_from, date_to)
+            # print(chart_type)
+            # print(date_from, date_to)
 
             df['date'] = df['date'].apply(lambda x: x.strftime('%Y-%m-%d'))
-            print(df['date'])
+            # print(df['date'])
             df2 = df.groupby('date', as_index=False)['total_price'].agg('sum')
-            print(df2)
+            # print(df2)
 
             if chart_type != '':
                 if date_from != '' and date_to != '':
@@ -53,9 +56,20 @@ def chart_select_view(request):
 
     context = {
         'graph': graph,
+        'price': price,
         'error_message': error_message,
+        # 'chart_error_message': chart_error_message,
         # 'products': product_df.to_html(),
         # 'purchase': purchase_df.to_html(),
         # 'df': df,
     }
     return render(request, 'products/main.html', context)
+
+
+def add_purchase_view(request):
+    form = PurchaseForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'products/add.html', context)
