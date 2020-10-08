@@ -3,11 +3,20 @@
 {% block title %} Add Purchase {% endblock title %}
 
 {% block content %}
-<h1>Add Purchase</h1>
 
+{% if added_message %}
+<div class="ui olive message">
+    <i class="close icon"></i>
+    <div class="header">
+        {{ added_message }}
+    </div>
+</div>
+{% endif %}
+<h1>Add Purchase</h1>
 <form action="" method="POST" class="ui form">
     {% csrf_token %}
     {{ form }}
     <button type="submit" class="ui positive button mtop">Add sales data</button>
 </form>
+
 {% endblock content %}
