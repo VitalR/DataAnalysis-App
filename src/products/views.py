@@ -3,11 +3,13 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Product, Purchase
 from .utils import get_simple_plot, get_salesman_from_id, get_image
 from .forms import PurchaseForm
 
 
+@login_required
 def sales_dist_view(request):
     df = pd.DataFrame(Purchase.objects.all().values())
     df['salesman_id'] = df['salesman_id'].apply(get_salesman_from_id)
@@ -25,6 +27,7 @@ def sales_dist_view(request):
     return render(request, 'products/sales.html', {'graph': graph})
 
 
+@login_required
 def chart_select_view(request):
     df = None
     graph = None
@@ -88,6 +91,7 @@ def chart_select_view(request):
     return render(request, 'products/main.html', context)
 
 
+@login_required
 def add_purchase_view(request):
     form = PurchaseForm(request.POST or None)
     added_message = None

@@ -3,9 +3,11 @@ from django.shortcuts import render
 from .forms import CsvForm
 from .models import Csv
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from products.models import Product, Purchase
 
 
+@login_required
 def upload_file_view(request):
     error_message = None
     success_message = None
