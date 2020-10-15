@@ -66,7 +66,7 @@ def chart_select_view(request):
 
                 if chart_type != '':
                     if date_from != '' and date_to != '':
-                        df = df[(df['date'] > date_from & df['dare'] < date_to)]
+                        df = df[(df['date'] > date_from) & (df['date'] < date_to)]
                         df2 = df.groupby('date', as_index=False)['total_price'].agg('sum')
                     # function to get a graph
                     graph = get_simple_plot(chart_type, x=df2['date'], y=df2['total_price'], data=df)

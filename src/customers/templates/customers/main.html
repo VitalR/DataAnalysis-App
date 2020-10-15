@@ -3,7 +3,7 @@
 {% block title %} Customers data {% endblock title %}
 
 {% block content %}
-<h1>Correlation: {{ corr }}</h1>
+<h2>Correlation: {{ corr }}</h2>
     {% if graph %}
         <div class="block-center">
             <img src="data:image/png;base64, {{ graph|safe }}" height="600" width="auto">

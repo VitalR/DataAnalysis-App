@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'products',
     'csvs',
     'customers',
+
+    'crispy_forms',
+    'crispy_forms_semantic_ui',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,9 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
+
+
+CRISPY_TEMPLATE_PACK = 'semantic-ui'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3',
+                                 'bootstrap4', 'semantic-ui',)

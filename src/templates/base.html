@@ -17,6 +17,16 @@
 <body>
 {% include 'navbar.html' %}
 <div class="ui container">
+
+        {% if messages %}
+        {% for message in messages %}
+        <div class="ui {{ message.tags }} message">
+            <i class="close icon"></i>
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
     {% block content %}
     {% endblock content %}
 </div>
